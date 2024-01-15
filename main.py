@@ -10,6 +10,7 @@ from doctest1 import *
 
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate('privateKey.json')
+
 firebase_admin.initialize_app(cred, {
     'storageBucket': 'uploadjs-7f8e6.appspot.com'
 })
@@ -110,7 +111,7 @@ def upload():
             # Extract all paragraphs from the document
             paragraphs = []
             for paragraph in word_replacer.docx.paragraphs:
-                if "reference" in paragraph.text.lower() and is_real_reference(paragraph)==False:
+                if is_real_reference(paragraph)==False:
                     print(paragraph.text)
                     break
                 if paragraph.text!="": paragraphs.append(paragraph.text)
